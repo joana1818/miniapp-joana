@@ -125,7 +125,7 @@ const App = () => {
     <ScrollView style={styles.container}>
       {/* Barra superior */}
       <View style={styles.headerBar}>
-        <Text style={styles.consultoriaName}>Online-Joana</Text>
+        <Text style={styles.consultoriaName}>Consultoria Online</Text>
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
       </View>
 
