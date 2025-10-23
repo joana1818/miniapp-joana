@@ -18,7 +18,7 @@ const App = () => {
     setCompleted(prev => ({ ...prev, [exercise]: !prev[exercise] }));
   };
 
-  // ✅ Treinos organizados por grupo muscular
+ 
   const workouts = [
     {
       group: 'Quadríceps',
@@ -60,21 +60,21 @@ const App = () => {
           name: 'Stiff',
           series: '4x12',
           desc: 'Alongue bem e não force a lombar.',
-          image: require('../../assets/stiff.png'), // adicione na pasta assets
+          image: require('../../assets/stiff.png'), 
           color: '#1e3d59',
         },
         {
           name: 'Terra Sumô',
           series: '4x12',
           desc: 'Mantenha coluna reta e pés afastados.',
-          image: require('../../assets/terra.png'), // adicione na pasta assets
+          image: require('../../assets/terra.png'), 
           color: '#3a5a75',
         },
         {
           name: 'Agachamento Sumô',
           series: '3x12',
           desc: 'Foque na postura e amplitude.',
-          image: require('../../assets/agachamentosumo.png'), // adicione na pasta assets
+          image: require('../../assets/agachamentosumo.png'), 
           color: '#1e3d59',
         },
         {
@@ -93,28 +93,28 @@ const App = () => {
           name: 'Rosca Direta',
           series: '3x12',
           desc: 'Controle o movimento.',
-          image: require('../../assets/roscadireta.png'), // adicione na pasta assets
+          image: require('../../assets/roscadireta.png'), 
           color: '#1e3d59',
         },
         {
           name: 'Rosca Alternada',
           series: '3x12',
           desc: 'Faça com ritmo e postura.',
-          image: require('../../assets/roscaalternada.png'), // adicione na pasta assets
+          image: require('../../assets/roscaalternada.png'), 
           color: '#3a5a75',
         },
         {
           name: 'Tríceps Testa',
           series: '3x10',
           desc: 'Alongue e concentre no tríceps.',
-          image: require('../../assets/triceps.png'), // adicione na pasta assets
+          image: require('../../assets/triceps.png'), 
           color: '#1e3d59',
         },
         {
           name: 'Tríceps Corda',
           series: '3x12',
           desc: 'Mantenha cotovelos fixos.',
-          image: require('../../assets/tricepscorda.png'), // adicione na pasta assets
+          image: require('../../assets/tricepscorda.png'), 
           color: '#3a5a75',
         },
       ],
