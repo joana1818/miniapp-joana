@@ -1,122 +1,185 @@
 import React, { useState } from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
-export default function Index() {
-  const [completed, setCompleted] = useState<{ [key: string]: boolean }>({});
+interface Exercise {
+  name: string;
+  series: string;
+  desc: string;
+  image: any;
+  color: string;
+}
+
+const App = () => {
+  const [completed, setCompleted] = useState<{[key: string]: boolean}>({});
 
   const toggleComplete = (exercise: string) => {
-    setCompleted((prev) => ({ ...prev, [exercise]: !prev[exercise] }));
+    setCompleted(prev => ({ ...prev, [exercise]: !prev[exercise] }));
   };
 
-  const exercises = [
+  // ✅ Treinos organizados por grupo muscular
+  const workouts = [
     {
-      name: 'Agachamento',
-      series: '3 séries x 12 repetições',
-      desc: 'Coloque uma boa carga, mas foque na execução correta.',
-      image: require('../../assets/agachamento.png'),
-      color: '#1e3d59', 
+      group: 'Quadríceps',
+      exercises: [
+        {
+          name: 'Agachamento',
+          series: '3x12',
+          desc: 'Foque na execução correta.',
+          image: require('../../assets/agachamento.png'),
+          color: '#1e3d59',
+        },
+        {
+          name: 'Hack Squat',
+          series: '5x10',
+          desc: 'Estabilize bem os joelhos.',
+          image: require('../../assets/hacksquat.png'),
+          color: '#3a5a75',
+        },
+        {
+          name: 'Cadeira Extensora',
+          series: '5x10',
+          desc: 'Isola os quadríceps.',
+          image: require('../../assets/cadeiraextensora.png'),
+          color: '#1e3d59',
+        },
+        {
+          name: 'Afundo',
+          series: '3x10',
+          desc: 'Foque na execução e equilíbrio.',
+          image: require('../../assets/afundo.png'),
+          color: '#3a5a75',
+        },
+      ],
     },
     {
-      name: 'Hack Squat',
-      series: '5 séries x 10 repetições',
-      desc: 'Estabilize o joelho e respire a cada movimento.',
-      image: require('../../assets/hacksquat.png'),
-      color: '#3a5a75', 
+      group: 'Posterior de Perna',
+      exercises: [
+        {
+          name: 'Stiff',
+          series: '4x12',
+          desc: 'Alongue bem e não force a lombar.',
+          image: require('../../assets/stiff.png'), // adicione na pasta assets
+          color: '#1e3d59',
+        },
+        {
+          name: 'Terra Sumô',
+          series: '4x12',
+          desc: 'Mantenha coluna reta e pés afastados.',
+          image: require('../../assets/terra.png'), // adicione na pasta assets
+          color: '#3a5a75',
+        },
+        {
+          name: 'Agachamento Sumô',
+          series: '3x12',
+          desc: 'Foque na postura e amplitude.',
+          image: require('../../assets/agachamentosumo.png'), // adicione na pasta assets
+          color: '#1e3d59',
+        },
+        {
+          name: 'Afundo', 
+          series: '3x10',
+          desc: 'Bom para equilíbrio e glúteos.',
+          image: require('../../assets/afundo.png'),
+          color: '#3a5a75',
+        },
+      ],
     },
     {
-      name: 'Cadeira Extensora',
-      series: '5 séries x 10 repetições',
-      desc: 'Isola os quadríceps, dê seu melhor.',
-      image: require('../../assets/cadeiraextensora.png'),
-      color: '#1e3d59',
-    },
-    {
-      name: 'Afundo',
-      series: '3 séries x 10 repetições',
-      desc: 'Foque mais na execução do que na carga.',
-      image: require('../../assets/afundo.png'),
-      color: '#3a5a75',
+      group: 'Braço',
+      exercises: [
+        {
+          name: 'Rosca Direta',
+          series: '3x12',
+          desc: 'Controle o movimento.',
+          image: require('../../assets/roscadireta.png'), // adicione na pasta assets
+          color: '#1e3d59',
+        },
+        {
+          name: 'Rosca Alternada',
+          series: '3x12',
+          desc: 'Faça com ritmo e postura.',
+          image: require('../../assets/roscaalternada.png'), // adicione na pasta assets
+          color: '#3a5a75',
+        },
+        {
+          name: 'Tríceps Testa',
+          series: '3x10',
+          desc: 'Alongue e concentre no tríceps.',
+          image: require('../../assets/triceps.png'), // adicione na pasta assets
+          color: '#1e3d59',
+        },
+        {
+          name: 'Tríceps Corda',
+          series: '3x12',
+          desc: 'Mantenha cotovelos fixos.',
+          image: require('../../assets/tricepscorda.png'), // adicione na pasta assets
+          color: '#3a5a75',
+        },
+      ],
     },
   ];
 
   return (
-    <View style={styles.container}>
-      {/* Barra superior com nome e logo */}
+    <ScrollView style={styles.container}>
+      {/* Barra superior */}
       <View style={styles.headerBar}>
-        <Text style={styles.consultoriaName}>Consultoria</Text>
+        <Text style={styles.consultoriaName}>Online-Joana</Text>
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
       </View>
 
       <Text style={styles.title}>Diário de Treino</Text>
-      <Text style={styles.subtitle}>Exercícios do Dia - Quadríceps</Text>
 
-      <ScrollView contentContainerStyle={styles.list}>
-        {exercises.map((ex) => (
-          <View
-            key={ex.name}
-            style={[styles.exerciseBlock, { backgroundColor: ex.color }]}
-          >
-            <Image source={ex.image} style={styles.exerciseImage} />
-            <Text style={styles.exerciseName}>{ex.name}</Text>
-            <Text style={styles.exerciseInfo}>{ex.series}</Text>
-            <Text style={styles.exerciseDesc}>{ex.desc}</Text>
-
-            <TouchableOpacity
-              style={[
-                styles.completeButton,
-                completed[ex.name] ? styles.completeButtonActive : {},
-              ]}
-              onPress={() => toggleComplete(ex.name)}
-            >
-              <Text style={styles.completeButtonText}>
-                {completed[ex.name] ? 'Concluído' : 'Marcar como concluído'}
-              </Text>
-            </TouchableOpacity>
+      {workouts.map((workout) => (
+        <View key={workout.group} style={{ marginBottom: 25, width: '100%' }}>
+          <Text style={styles.groupTitle}>{workout.group}</Text>
+          <View style={styles.exerciseRow}>
+            {workout.exercises.map((ex) => (
+              <View key={ex.name} style={[styles.exerciseBlock, { backgroundColor: ex.color }]}>
+                <Image source={ex.image} style={styles.exerciseImage} />
+                <Text style={styles.exerciseName}>{ex.name}</Text>
+                <Text style={styles.exerciseInfo}>{ex.series}</Text>
+                <Text style={styles.exerciseDesc}>{ex.desc}</Text>
+                <TouchableOpacity
+                  style={[styles.completeButton, completed[ex.name] ? styles.completeButtonActive : {}]}
+                  onPress={() => toggleComplete(ex.name)}
+                >
+                  <Text style={styles.completeButtonText}>
+                    {completed[ex.name] ? 'Concluído' : 'Marcar como concluído'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ))}
           </View>
-        ))}
-      </ScrollView>
+        </View>
+      ))}
 
       <Text style={styles.footer}>
-        “Se continuar vivo após esse treino, muito bem! Para o próximo, boa sorte!”
+        “Bom treino,bom desempenho e boa sorte!”
       </Text>
-    </View>
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
     paddingTop: 20,
-    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    paddingHorizontal: 10,
   },
   headerBar: {
-    width: '100%',
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
     justifyContent: 'space-between',
-    backgroundColor: '#e0e0e0',
+    alignItems: 'center',
     marginBottom: 15,
-    borderRadius: 10,
+    paddingHorizontal: 10,
   },
   consultoriaName: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: '#1e3d59',
-    textAlign: 'left',
-    flex: 1,
   },
   logo: {
     width: 70,
@@ -126,52 +189,49 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
+    textAlign: 'center',
     color: '#1e3d59',
-    marginBottom: 5,
-    textAlign: 'center',
+    marginBottom: 10,
   },
-  subtitle: {
-    fontSize: 18,
-    color: '#3a5a75',
-    marginBottom: 20,
-    textAlign: 'center',
+  groupTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#1e3d59',
+    marginBottom: 10,
+    marginLeft: 5,
   },
-  list: {
-    width: '100%',
-    alignItems: 'center',
-    paddingBottom: 20,
+  exerciseRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   exerciseBlock: {
-    width: screenWidth,
+    width: '48%',
     borderRadius: 15,
-    padding: 25,
-    marginBottom: 20,
+    padding: 15,
+    marginBottom: 15,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 5,
   },
   exerciseImage: {
-    width: 140,
-    height: 140,
-    marginBottom: 15,
+    width: 100,
+    height: 100,
+    marginBottom: 10,
     borderRadius: 10,
   },
   exerciseName: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
-    marginBottom: 5,
+    marginBottom: 3,
+    textAlign: 'center',
   },
   exerciseInfo: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#fff',
-    marginBottom: 5,
+    marginBottom: 3,
   },
   exerciseDesc: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#fff',
     textAlign: 'center',
     marginBottom: 10,
@@ -179,23 +239,25 @@ const styles = StyleSheet.create({
   completeButton: {
     backgroundColor: '#fff',
     width: '100%',
-    paddingVertical: 14,
+    paddingVertical: 10,
     borderRadius: 5,
   },
   completeButtonActive: {
     backgroundColor: '#4caf50',
   },
   completeButtonText: {
-    color: '#1e3d59',
+    fontSize: 14,
     fontWeight: 'bold',
+    color: '#1e3d59',
     textAlign: 'center',
   },
   footer: {
     fontSize: 16,
     fontStyle: 'italic',
-    color: '#1e3d59',
     textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    marginVertical: 20,
+    color: '#1e3d59',
   },
 });
+
+export default App;
