@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# Diário de Treino – Online-Joana
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📖 Sobre o Projeto
+A **Consultoria Oline - Diário de treino** é um aplicativo mobile desenvolvido em **React Native** com o objetivo de servir como um diário visual de treinos.  
+Ele permite que o usuário veja uma lista de exercícios organizada por grupo muscular, visualize informações detalhadas de cada exercício e marque cada treino como concluído.
 
-## Get started
+O foco do projeto é demonstrar o uso de **componentes básicos do React Native**, como `View`, `Text`, `Image` e `ScrollView`, bem como **estilos com StyleSheet**, cores, alinhamento e hierarquia visual.  
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🎯 Funcionalidades
+- Exibição de **lista de exercícios** por grupo muscular (quadríceps, posterior de perna, braços).  
+- Cada exercício possui:
+  - **Nome**
+  - **Número de séries e repetições**
+  - **Descrição detalhada**
+  - **Imagem ilustrativa**
+- Possibilidade de **marcar o exercício como concluído**.  
+- Layout responsivo que se adapta a diferentes tamanhos de tela.  
+- Cabeçalho personalizado com **Consultoria Online** e a  **logo**.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🎨 Tecnologias Utilizadas
+- [React Native](https://reactnative.dev/)  
+- [Expo](https://expo.dev/)  
+- [TypeScript](https://www.typescriptlang.org/)  
+- Componentes nativos: `View`, `Text`, `Image`, `ScrollView`, `TouchableOpacity`  
+- Hooks: `useState`  
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Como Rodar o Projeto
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Pré-requisitos
+- Ter instalado o **Node.js** e o **npm**.
+- Ter baixado o **Expo Go** no celular (Android ou iOS).
 
-## Get a fresh project
+### Passos
 
-When you're ready, run:
-
+1. **Clonar o repositório**
 ```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+git clone https://github.com/joana1818/miniapp-joana.git
+cd miniapp
+npm start
